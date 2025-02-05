@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -32,6 +33,11 @@ public class SpringbootJpaApplication implements CommandLineRunner {
       .findByProgrammingLanguageAndName("Java", "Andres");
 
     persons.forEach(System.out::println);
+
+    List<Object[]> personsValues = this.personRepository.obtenerPersonData();
+    personsValues.forEach(person -> {
+      System.out.println(Arrays.toString(person));
+    });
 
   }
 }
