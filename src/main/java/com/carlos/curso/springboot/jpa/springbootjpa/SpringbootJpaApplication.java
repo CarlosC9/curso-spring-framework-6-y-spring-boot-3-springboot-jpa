@@ -29,7 +29,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    List<Person> persons = this.personRepository.findByProgrammingLanguage("Javascript");
 //    List<Person> persons = this.personRepository.buscarByProgrammingLanguage("Python", "Pepe");
     List<Person> persons = this.personRepository
-      .findByProgrammingLanguageAndName("Python", "Pepe");
+      .findByProgrammingLanguageAndName("Java", "Andres");
 
     persons.forEach(System.out::println);
 
