@@ -12,21 +12,26 @@ import java.util.List;
 @SpringBootApplication
 public class SpringbootJpaApplication implements CommandLineRunner {
 
-    private PersonRepository personRepository;
+  private PersonRepository personRepository;
 
-    @Autowired
-    public void setPersonRepository(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
+  @Autowired
+  public void setPersonRepository(PersonRepository personRepository) {
+    this.personRepository = personRepository;
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringbootJpaApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(SpringbootJpaApplication.class, args);
+  }
 
-    @Override
-    public void run(String... args) throws Exception {
-        List<Person> persons = (List<Person>) personRepository.findAll();
-        persons.forEach(System.out::println);
+  @Override
+  public void run(String... args) throws Exception {
+//    List<Person> persons = (List<Person>) this.personRepository.findAll();
+//    List<Person> persons = this.personRepository.findByProgrammingLanguage("Javascript");
+//    List<Person> persons = this.personRepository.buscarByProgrammingLanguage("Python", "Pepe");
+    List<Person> persons = this.personRepository
+      .findByProgrammingLanguageAndName("Python", "Pepe");
 
-    }
+    persons.forEach(System.out::println);
+
+  }
 }
