@@ -24,9 +24,8 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     SpringApplication.run(SpringbootJpaApplication.class, args);
   }
 
-  @Override
-  public void run(String... args) throws Exception {
-//    List<Person> persons = (List<Person>) this.personRepository.findAll();
+  private void list() {
+    //    List<Person> persons = (List<Person>) this.personRepository.findAll();
 //    List<Person> persons = this.personRepository.findByProgrammingLanguage("Javascript");
 //    List<Person> persons = this.personRepository.buscarByProgrammingLanguage("Python", "Pepe");
     List<Person> persons = this.personRepository
@@ -38,6 +37,15 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     personsValues.forEach(person -> {
       System.out.println(Arrays.toString(person));
     });
+  }
 
+  private void findOne() {
+    this.personRepository.findById(2L).ifPresent(System.out::println);
+  }
+
+  @Override
+  public void run(String... args) throws Exception {
+//    this.list();
+    this.findOne();
   }
 }
