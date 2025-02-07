@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+  @Query("select new Person(p.name, p.lastname) from Person p")
+  List<Person> findAllPersonalizedObjectPerson();
+
   @Query("select p.name from Person p where p.id=:id")
   Optional<String> getNameById(Long id);
 
@@ -35,6 +38,9 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
   @Query("select p.name, p.programmingLanguage from Person p")
   List<Object[]> obtenerPersonData();
+
+  @Query("select p, p.programmingLanguage from Person p")
+  List<Object[]> findAllMixPersonDataList();
 
   @Query("select p.id, p.name, p.lastname, p.programmingLanguage from Person p")
   List<Object[]> obtenerPersonDataList();

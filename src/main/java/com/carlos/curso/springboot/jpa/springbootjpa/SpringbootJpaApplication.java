@@ -104,14 +104,29 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
     System.out.println("\ngetNameById");
     System.out.println(this.personRepository.getNameById(2L).orElseThrow());
+
     System.out.println("\ngetFullNameById");
     System.out.println(this.personRepository.getFullNameById(2L).orElseThrow());
+
     System.out.println("\nobtenerPersonDataById");
     System.out.println(Arrays.toString(this.personRepository.obtenerPersonDataById(2L)));
+
     System.out.println("\nobtenerPersonDataList");
     this.personRepository.obtenerPersonDataList().forEach(
       p -> System.out.println(Arrays.toString(p))
     );
+  }
+
+  @Transactional(readOnly = true)
+  public void personalizedQueries2() {
+
+    System.out.println("\nfindAllMixPersonDataList");
+    this.personRepository.findAllMixPersonDataList().forEach(
+      reg -> System.out.println(Arrays.toString(reg))
+    );
+
+    System.out.println("\nfindAllClassPerson");
+    this.personRepository.findAllPersonalizedObjectPerson().forEach(System.out::println);
   }
 
 
@@ -123,6 +138,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.update();
 //    this.delete();
 //    this.delete2();
-    this.personalizedQueries();
+//    this.personalizedQueries();
+    this.personalizedQueries2();
   }
 }
