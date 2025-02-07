@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class SpringbootJpaApplication implements CommandLineRunner {
@@ -40,7 +41,12 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   }
 
   private void findOne() {
-    this.personRepository.findById(2L).ifPresent(System.out::println);
+    Person person = null;
+    Optional<Person> optionalPerson = this.personRepository.findByNameContainingIgnoreCase("ri");
+    if (optionalPerson.isPresent()) {
+      person = optionalPerson.orElseThrow();
+    }
+    System.out.println(person);
   }
 
   @Override
