@@ -73,10 +73,16 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   public void create() {
     Person person = new Person(null, "Calo", "Calaballo", "Javascript");
 
-    Person newPerson = this.personRepository.save(person);
     this.personRepository.findById(person.getId()).ifPresent(System.out::println);
+  }
 
-    System.out.println(newPerson);
+  @Transactional
+  public void delete() {
+
+    this.personRepository.deleteById(7L);
+
+    List<Person> persons = (List<Person>) this.personRepository.findAll();
+    persons.forEach(System.out::println);
   }
 
   @Override
@@ -84,6 +90,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.list();
 //    this.findOne();
 //    this.create();
-    this.update();
+//    this.update();
+//    this.delete();
   }
 }
