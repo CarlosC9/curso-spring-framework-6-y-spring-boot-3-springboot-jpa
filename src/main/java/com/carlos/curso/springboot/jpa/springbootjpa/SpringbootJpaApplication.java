@@ -85,6 +85,20 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     persons.forEach(System.out::println);
   }
 
+  @Transactional
+  public void delete2() {
+
+    Optional<Person> personOptional = this.personRepository.findById(8L);
+
+    if (personOptional.isPresent()) {
+      this.personRepository.delete(personOptional.orElseThrow());
+    }
+
+    List<Person> persons = (List<Person>) this.personRepository.findAll();
+    persons.forEach(System.out::println);
+  }
+
+
   @Override
   public void run(String... args) throws Exception {
 //    this.list();
@@ -92,5 +106,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.create();
 //    this.update();
 //    this.delete();
+    this.delete2();
   }
 }
