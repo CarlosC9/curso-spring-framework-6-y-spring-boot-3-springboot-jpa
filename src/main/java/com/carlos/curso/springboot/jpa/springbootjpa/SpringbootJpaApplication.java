@@ -2,6 +2,7 @@ package com.carlos.curso.springboot.jpa.springbootjpa;
 
 import com.carlos.curso.springboot.jpa.springbootjpa.entities.Person;
 import com.carlos.curso.springboot.jpa.springbootjpa.repositories.PersonRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -49,10 +50,12 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     System.out.println(person);
   }
 
+  @Transactional
   public void create() {
-    Person person = new Person(null, "Lalo", "Thor", "Python");
+    Person person = new Person(null, "Calo", "Calaballo", "Javascript");
 
     Person newPerson = this.personRepository.save(person);
+    this.personRepository.findById(person.getId()).ifPresent(System.out::println);
 
     System.out.println(newPerson);
   }
