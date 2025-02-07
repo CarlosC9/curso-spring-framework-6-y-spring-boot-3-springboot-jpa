@@ -51,6 +51,25 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   }
 
   @Transactional
+  public void update() {
+
+    Optional<Person> optionalPerson = this.personRepository.findById(7L);
+
+    if (optionalPerson.isPresent()) {
+      Person person = optionalPerson.orElseThrow();
+      Person personDb = personRepository.save(person);
+      System.out.println(personDb);
+    }
+
+//    optionalPerson.ifPresent(person -> {
+//      person.setProgrammingLanguage("Javascript");
+//      Person personDb = personRepository.save(person);
+//      System.out.println(personDb);
+//    });
+
+  }
+
+  @Transactional
   public void create() {
     Person person = new Person(null, "Calo", "Calaballo", "Javascript");
 
@@ -64,6 +83,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   public void run(String... args) throws Exception {
 //    this.list();
 //    this.findOne();
-    this.create();
+//    this.create();
+    this.update();
   }
 }
