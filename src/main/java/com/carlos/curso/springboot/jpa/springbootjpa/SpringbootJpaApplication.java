@@ -73,7 +73,9 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   public void create() {
     Person person = new Person(null, "Calo", "Calaballo", "Javascript");
 
-    this.personRepository.findById(person.getId()).ifPresent(System.out::println);
+    Person newPerson = this.personRepository.save(person);
+
+    this.personRepository.findById(newPerson.getId()).ifPresent(System.out::println);
   }
 
   @Transactional
@@ -132,6 +134,22 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     this.personRepository.findAllPersonDto().forEach(System.out::println);
   }
 
+  @Transactional(readOnly = true)
+  public void personalizedQueriesDistinct() {
+
+    System.out.println("\nfindAllName");
+    this.personRepository.findAllName().forEach(System.out::println);
+
+    System.out.println("\nfindAllNamesDistinct");
+    this.personRepository.findAllNamesDistinct().forEach(System.out::println);
+
+    System.out.println("\nfindAllProgrammingLanguageDistinct");
+    this.personRepository.findAllProgrammingLanguageDistinct().forEach(System.out::println);
+
+    System.out.println("\nfindAllProgrammingLanguageDistinctCount");
+    System.out.println(this.personRepository.findAllProgrammingLanguageDistinctCount());
+  }
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -142,6 +160,8 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.delete();
 //    this.delete2();
 //    this.personalizedQueries();
-    this.personalizedQueries2();
+//    this.personalizedQueries2();
+//    this.create();
+    this.personalizedQueriesDistinct();
   }
 }
