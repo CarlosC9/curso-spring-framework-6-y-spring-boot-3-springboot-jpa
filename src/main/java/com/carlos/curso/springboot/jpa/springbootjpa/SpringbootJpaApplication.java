@@ -127,6 +127,9 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
     System.out.println("\nfindAllClassPerson");
     this.personRepository.findAllPersonalizedObjectPerson().forEach(System.out::println);
+
+    System.out.println("\nfindAllPersonDto");
+    this.personRepository.findAllPersonDto().forEach(System.out::println);
   }
 
 
