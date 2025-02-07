@@ -2,11 +2,11 @@ package com.carlos.curso.springboot.jpa.springbootjpa;
 
 import com.carlos.curso.springboot.jpa.springbootjpa.entities.Person;
 import com.carlos.curso.springboot.jpa.springbootjpa.repositories.PersonRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,12 +90,20 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
     Optional<Person> personOptional = this.personRepository.findById(8L);
 
+
     if (personOptional.isPresent()) {
       this.personRepository.delete(personOptional.orElseThrow());
     }
 
     List<Person> persons = (List<Person>) this.personRepository.findAll();
     persons.forEach(System.out::println);
+  }
+
+  @Transactional(readOnly = true)
+  public void personalizedQueries() {
+
+    System.out.println(personRepository.getNameById(2L).orElseThrow());
+    System.out.println(personRepository.getFullNameById(2L).orElseThrow());
   }
 
 
@@ -106,6 +114,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.create();
 //    this.update();
 //    this.delete();
-    this.delete2();
+//    this.delete2();
+    this.personalizedQueries();
   }
 }
