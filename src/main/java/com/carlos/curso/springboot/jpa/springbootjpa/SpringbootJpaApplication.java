@@ -150,6 +150,23 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     System.out.println(this.personRepository.findAllProgrammingLanguageDistinctCount());
   }
 
+  @Transactional(readOnly = true)
+  public void personalizedQueriesContactUpperAndLowerCase() {
+
+    System.out.println("\nfindAllFullNameConcat");
+    this.personRepository.findAllFullNameConcat().forEach(System.out::println);
+
+    System.out.println("\nfindAllFullNameConcatUpper");
+    this.personRepository.findAllFullNameConcatUpper().forEach(System.out::println);
+
+    System.out.println("\nfindAllFullNameConcatLower");
+    this.personRepository.findAllFullNameConcatLower().forEach(System.out::println);
+
+    System.out.println("\nfindAllPersonDataListCase");
+    this.personRepository.findAllPersonDataListCase()
+      .forEach((register) -> System.out.println(Arrays.toString(register)));
+  }
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -162,6 +179,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.personalizedQueries();
 //    this.personalizedQueries2();
 //    this.create();
-    this.personalizedQueriesDistinct();
+//    this.personalizedQueriesDistinct();
+    this.personalizedQueriesContactUpperAndLowerCase();
   }
 }
