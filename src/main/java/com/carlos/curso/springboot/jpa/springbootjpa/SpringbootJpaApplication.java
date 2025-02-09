@@ -192,14 +192,24 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   @Transactional(readOnly = true)
   public void queriesFunctionAggregation() {
 
-    System.out.println("\ntotalPerson");
-    System.out.println(this.personRepository.totalPerson());
+    System.out.println("\ngetTotalPerson");
+    System.out.println(this.personRepository.getTotalPerson());
 
-    System.out.println("\nminId");
-    System.out.println(this.personRepository.minId());
+    System.out.println("\ngetMinId");
+    System.out.println(this.personRepository.getMinId());
 
-    System.out.println("\nmaxId");
-    System.out.println(this.personRepository.maxId());
+    System.out.println("\ngetMaxId");
+    System.out.println(this.personRepository.getMaxId());
+
+    System.out.println("\ngetPersonNameLength");
+    this.personRepository.getPersonNameLength()
+      .forEach((register) -> System.out.println(Arrays.toString(register)));
+
+    System.out.println("\ngetMinLengthName");
+    System.out.println(this.personRepository.getMinLengthName());
+
+    System.out.println("\ngetMaxLengthName");
+    System.out.println(this.personRepository.getMaxLengthName());
 
   }
 
