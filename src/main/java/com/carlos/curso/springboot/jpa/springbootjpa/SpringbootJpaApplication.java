@@ -217,6 +217,16 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     }
   }
 
+  @Transactional(readOnly = true)
+  public void subQueries() {
+    System.out.println("\ngetShorterName");
+    this.personRepository.getShorterName()
+      .forEach((register) -> System.out.println(Arrays.toString(register)));
+
+    System.out.println("\ngetLastRegistration");
+    this.personRepository.getLastRegistration().ifPresent(System.out::println);
+  }
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -232,6 +242,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.personalizedQueriesDistinct();
 //    this.personalizedQueriesContactUpperAndLowerCase();
 //    this.personalizedQueriesBetween();
-    this.queriesFunctionAggregation();
+//    this.queriesFunctionAggregation();
+    this.subQueries();
   }
 }
