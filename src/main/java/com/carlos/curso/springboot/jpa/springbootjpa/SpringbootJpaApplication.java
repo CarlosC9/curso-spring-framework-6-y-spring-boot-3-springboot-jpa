@@ -53,11 +53,12 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   @Transactional
   public void update() {
 
-    Optional<Person> optionalPerson = this.personRepository.findById(7L);
+    Optional<Person> optionalPerson = this.personRepository.findById(6L);
 
     if (optionalPerson.isPresent()) {
       Person person = optionalPerson.orElseThrow();
-      Person personDb = personRepository.save(person);
+      person.setProgrammingLanguage("Python");
+      Person personDb = this.personRepository.save(person);
       System.out.println(personDb);
     }
 
@@ -239,7 +240,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.list();
 //    this.findOne();
 //    this.create();
-//    this.update();
+    this.update();
 //    this.delete();
 //    this.delete2();
 //    this.personalizedQueries();
@@ -250,6 +251,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.personalizedQueriesBetween();
 //    this.queriesFunctionAggregation();
 //    this.subQueries();
-    this.whereIn();
+//    this.whereIn();
   }
 }
