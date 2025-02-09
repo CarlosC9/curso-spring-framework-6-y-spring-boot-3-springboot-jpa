@@ -53,7 +53,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   @Transactional
   public void update() {
 
-    Optional<Person> optionalPerson = this.personRepository.findById(6L);
+    Optional<Person> optionalPerson = this.personRepository.findById(10L);
 
     if (optionalPerson.isPresent()) {
       Person person = optionalPerson.orElseThrow();
@@ -240,7 +240,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.list();
 //    this.findOne();
 //    this.create();
-    this.update();
+//    this.update();
 //    this.delete();
 //    this.delete2();
 //    this.personalizedQueries();
