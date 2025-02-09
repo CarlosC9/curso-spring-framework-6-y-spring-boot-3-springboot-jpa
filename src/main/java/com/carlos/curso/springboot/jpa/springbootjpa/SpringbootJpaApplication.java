@@ -171,10 +171,16 @@ public class SpringbootJpaApplication implements CommandLineRunner {
   public void personalizedQueriesBetween() {
 
     System.out.println("\nfindAllBetweenId");
-    this.personRepository.findAllBetweenId().forEach(System.out::println);
+    this.personRepository.findAllBetweenId(2L, 5L).forEach(System.out::println);
 
     System.out.println("\nfindAllBetweenName");
-    this.personRepository.findAllBetweenName().forEach(System.out::println);
+    this.personRepository.findAllBetweenName("J", "Q").forEach(System.out::println);
+
+    System.out.println("\nfindByIdBetween");
+    this.personRepository.findByIdBetween(2L, 5L).forEach(System.out::println);
+
+    System.out.println("\nfindByNameBetween");
+    this.personRepository.findByNameBetween("J", "Q").forEach(System.out::println);
 
   }
 
