@@ -167,6 +167,17 @@ public class SpringbootJpaApplication implements CommandLineRunner {
       .forEach((register) -> System.out.println(Arrays.toString(register)));
   }
 
+  @Transactional(readOnly = true)
+  public void personalizedQueriesBetween() {
+
+    System.out.println("\nfindAllBetweenId");
+    this.personRepository.findAllBetweenId().forEach(System.out::println);
+
+    System.out.println("\nfindAllBetweenName");
+    this.personRepository.findAllBetweenName().forEach(System.out::println);
+
+  }
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -180,6 +191,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.personalizedQueries2();
 //    this.create();
 //    this.personalizedQueriesDistinct();
-    this.personalizedQueriesContactUpperAndLowerCase();
+//    this.personalizedQueriesContactUpperAndLowerCase();
+    this.personalizedQueriesBetween();
   }
 }
