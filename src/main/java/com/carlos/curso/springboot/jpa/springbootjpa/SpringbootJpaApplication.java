@@ -189,6 +189,20 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     this.personRepository.findAllByOrderByNameAscLastnameAsc().forEach(System.out::println);
   }
 
+  @Transactional(readOnly = true)
+  public void queriesFunctionAggregation() {
+
+    System.out.println("\ntotalPerson");
+    System.out.println(this.personRepository.totalPerson());
+
+    System.out.println("\nminId");
+    System.out.println(this.personRepository.minId());
+
+    System.out.println("\nmaxId");
+    System.out.println(this.personRepository.maxId());
+
+  }
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -203,6 +217,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.create();
 //    this.personalizedQueriesDistinct();
 //    this.personalizedQueriesContactUpperAndLowerCase();
-    this.personalizedQueriesBetween();
+//    this.personalizedQueriesBetween();
+    this.queriesFunctionAggregation();
   }
 }
