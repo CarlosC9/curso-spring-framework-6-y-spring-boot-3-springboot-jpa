@@ -227,6 +227,12 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     this.personRepository.getLastRegistration().ifPresent(System.out::println);
   }
 
+  @Transactional(readOnly = true)
+  public void whereIn() {
+    System.out.println("\ngetPersonByIds");
+    this.personRepository.getPersonByIds(Arrays.asList(1L, 2L, 5L)).forEach(System.out::println);
+  }
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -243,6 +249,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 //    this.personalizedQueriesContactUpperAndLowerCase();
 //    this.personalizedQueriesBetween();
 //    this.queriesFunctionAggregation();
-    this.subQueries();
+//    this.subQueries();
+    this.whereIn();
   }
 }
